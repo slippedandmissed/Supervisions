@@ -67,7 +67,7 @@
     1. An empty list is represented by an instance of `LinkList` whose `head` attribute is `null`.
     2. After converting the current value to a `String`, the `toString` function recursively calls `toString` on the `head` `Node` which will in turn do the same, thus traversing the list.
     3. It would be bad practice to do the logic inside the constructor itself because we are using the object's own `addFirst` method, and it is often dangerous to call the methods of an object while we are still meant to be initialising it, i.e. within the constructor.
-    4. <img src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%201/figures/LinkList%20UML.svg"/>
+    4. <br /><img src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%201/figures/LinkList%20UML.svg"/>
 
 9. https://github.com/slippedandmissed/Supervisions/tree/master/Object%20Oriented%20Programming/Supervision%201/code/Question9
 
@@ -91,13 +91,13 @@
 
 16. https://chime.cl.cam.ac.uk/page/repos/jbs52/classic_collections_lists_and_queues/code/277f2538cf2500e433439239480949ed113af732
 
-17.
+17. INCOMPLETE
 
-18.
+18. INCOMPLETE
 
 19. A reference is guaranteed by the compiler to always be pointing to some data of the correct type - either an instance of the correct class, or null. Pointers on the other hand can be pointing to a random chunk of memory which, if you were to try to use as if it were of the correct type, would cause problems in your code.
 
-20. <img src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%201/figures/Helpful%20diagrams.svg"/>
+20. <br /><img src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%201/figures/Helpful%20diagrams.svg"/>
 
 21.
     1. Delegation of responsibility - the notion of splitting code up into sections which are each responsible for their own portion of the problem. This allows you to treat certain parts of the code like a black box, which makes it easier to break up the problem into smaller problems.
