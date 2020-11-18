@@ -63,10 +63,45 @@
     - Classes: `LinkedList`, `Double`, `Tree`, `Computer`
     - Objects: `{1,2,3,4}`, the `LinkedList` referenced by `l`, the `Double` referenced by `k`.
 
-8. https://chime.cl.cam.ac.uk/page/repos/jbs52/classic_collections_lists_and_queues/code
+8. https://chime.cl.cam.ac.uk/page/repos/jbs52/classic_collections_lists_and_queues/code/477ff3b974521963c2afefb210d3ff5aa06340d7
     1. An empty list is represented by an instance of `LinkList` whose `head` attribute is `null`.
     2. After converting the current value to a `String`, the `toString` function recursively calls `toString` on the `head` `Node` which will in turn do the same, thus traversing the list.
     3. It would be bad practice to do the logic inside the constructor itself because we are using the object's own `addFirst` method, and it is often dangerous to call the methods of an object while we are still meant to be initialising it, i.e. within the constructor.
     4. <img src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%201/figures/LinkList%20UML.svg"/>
 
 9. https://github.com/slippedandmissed/Supervisions/tree/master/Object%20Oriented%20Programming/Supervision%201/code/Question9
+
+10. The keyword `void` shows that `Test` here is a regular method and not a constructor. Therefore the default constructor is used which does not modify `x`.
+
+11. One advantage of using private state with public getters and setters is that if you want to change your state implementation you just need to change the getters and setters and you won't have to worry about other code which might use instances of this class. Another benefit is that you can perform checks to make sure that other parts of the code cannot modify the state in a way which might break other methods of the class. A disadvantage is that it can make the code very clunky and verbose.
+
+12. This approach does reduce the verbosity of the code, but it doesn't provide the iron-clad compile-time security that Java's approach does. It is quite possible that one of these *meant-to-be-private* variables was used during prototyping and it was never refactored. Furthermore, if a variable is supposed to be accessed, the class itself cannot perform checks to make sure the new value is valid whenever it is set. Any attempt to implement such a thing would be, in essence, trying to simulate a setter.
+
+13. https://chime.cl.cam.ac.uk/page/repos/jbs52/matrices/code
+    1. `double`s can be subject to rounding errors in Java, and so the results may not be exactly accurate.
+    2. The notation of squares and rotations are not relevant to what a matrix does and how a matrix is implemented, so they should not be defined in the `Matrix` class.
+
+14.
+    1. https://github.com/slippedandmissed/Supervisions/tree/master/Object%20Oriented%20Programming/Supervision%201/code/Question14
+    2. Remove the setters for `x` and `y`. Make the `add` method return a new instance of `Vector2D` instead of modifying `this`, and likewise for the `normalize` method. Perhaps the latter would be better renamed to `normalized` to indicate that no action is being performed on the object itself. `x` and `y` could also be made final, but this is not necessary.
+    3. In the mutable case, either of the first two definitions would work well, as the addition is being performed on a vector (`this`) and the action is that of adding another vector (`v`) to it. It is a matter of preference whether or not this method should also return the modified `this`. In the immutable case, either the second or the fourth prototypes would work. In the second prototype, a new vector would be created which is the sum of `this` and `v` but without modifying either, and then this new object is returned. In the fourth prototype, a new vector would be created which is the sum of `v1` and `v2` and then this is returned.
+    4. Using static methods to perform operations on the vectors would be a good signal that the objects are immutable, but this can be clunky to use. Making `x` and `y` final and giving them no setters would also be a good indicator to the user, as would be renaming `normalize` to `normalized`. Of course, you could also just use javadocs or code comments.
+
+15. Due to type erasure, all generic classes are considered to be instances of `Object` at runtime. All classes inherit from `Object`, but primitives do not and so cannot be used as a generic type. Similarly, you cannot instantiate objects of the template type because, due to type erasure, they would just be treated as instances of `Object` at runtime.
+
+16. https://chime.cl.cam.ac.uk/page/repos/jbs52/classic_collections_lists_and_queues/code/277f2538cf2500e433439239480949ed113af732
+
+17.
+
+18.
+
+19. A reference is guaranteed by the compiler to always be pointing to some data of the correct type - either an instance of the correct class, or null. Pointers on the other hand can be pointing to a random chunk of memory which, if you were to try to use as if it were of the correct type, would cause problems in your code.
+
+20. <img src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%201/figures/Helpful%20diagrams.svg"/>
+
+21.
+    1. Delegation of responsibility - the notion of splitting code up into sections which are each responsible for their own portion of the problem. This allows you to treat certain parts of the code like a black box, which makes it easier to break up the problem into smaller problems.
+    2. References and pointers, and how they relate to im/mutability.
+    3. Unit tests
+
+22. Question 5 about how to test for TCO.
