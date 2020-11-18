@@ -62,13 +62,13 @@ public class SearchSet {
 	}
 	
 	public static void main (String[] args) {
-		SearchSet set = new SearchSet();
+		FunctionalArray array = new FunctionalArray(3);
 		
-		set.insert(1);
-		set.insert(2);
-		set.insert(3);
+		array.set(0, 1);
 		
-		System.out.println(set.contains(2));
+		System.out.println(array.get(0));
+		System.out.println(array.get(1));
+		System.out.println(array.get(2));
 	}
 	
 	

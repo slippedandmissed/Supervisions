@@ -1,5 +1,5 @@
 # Supervision 1
-2.
+2. https://chime.cl.cam.ac.uk/page/repos/jbs52/fibonacci/code
     1. They only test one or two values for the function, which is not a wide enough range
     2. Just because one takes less time than the other does not mean that the time complexity is less. FibonacciTable may run faster than Fibonacci for small inputs.
 
@@ -68,3 +68,5 @@
     2. After converting the current value to a `String`, the `toString` function recursively calls `toString` on the `head` `Node` which will in turn do the same, thus traversing the list.
     3. It would be bad practice to do the logic inside the constructor itself because we are using the object's own `addFirst` method, and it is often dangerous to call the methods of an object while we are still meant to be initialising it, i.e. within the constructor.
     4. <img src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%201/figures/LinkList%20UML.svg"/>
+
+9. https://github.com/slippedandmissed/Supervisions/tree/master/Object%20Oriented%20Programming/Supervision%201/code/Question9
