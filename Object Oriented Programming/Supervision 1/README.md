@@ -32,13 +32,57 @@
             // ASSERT
             assertThat(result).isEqualTo(1);
         }
-
+    }
     ```
     The test passes with 100% instruction coverage, but the function does not work.
 
 4. Functional languages require problems to be broken down into many nested (often recursive) function calls. Data is often immutable and the code is stateless, with no side-effects. Imperative languages are stateful and do have side-effects. Programming in imperative languages requires the programmer to specify a list of steps which the computer must execute in order to solve the problem.
 
-5. INCOMPLETE
+5.
+    ```java
+    class Main {
+        public static int factorial(int n) {
+            if (n == 0) {
+            return 1;
+            }
+            return n * factorial(n-1);
+        }
+
+        public static int factorialTCO(int n, int acc) {
+            if (n == 0) {
+            return acc;
+            }
+            return factorialTCO(n-1, n*acc);
+        }
+
+        public static int factorialTCO(int n) {
+            return factorialTCO(n, 1);
+        }
+
+
+        public static void main(String[] args) throws Exception {
+            int input = 10000000;
+            try {
+            factorial(input);
+            System.out.println("No stack overflow on non-TCO method");
+            } catch (StackOverflowError e) {
+            System.out.println("Stack overflow on non-TCO method");
+            }
+
+            try {
+            factorialTCO(input);
+            System.out.println("No stack overflow on TCO method");
+            } catch (StackOverflowError e) {
+            System.out.println("Stack overflow on TCO method");
+            }
+        }
+    }
+    ```
+    ```
+    Stack overflow on non-TCO method
+    Stack overflow on TCO method
+    ```
+    If there was TCO optimisation, the tail-recursive method would not result in a stack overflow error. Therefore there is no TCO optimisation.
 
 6.
     ```java
@@ -91,9 +135,62 @@
 
 16. https://chime.cl.cam.ac.uk/page/repos/jbs52/classic_collections_lists_and_queues/code/277f2538cf2500e433439239480949ed113af732
 
-17. INCOMPLETE
+17. https://chime.cl.cam.ac.uk/page/repos/jbs52/sorting/code
+    1. When an array is allocated in Java, memory is allocated based on the type of the elements in the array. However at runtime due to type erasure the information about the generic type is not available, and so an array of such cannot be allocated. `Object[]` will work because any generic class inherits from `Object` and so can be implicitly cast to an `Object`. `ArrayList<T>` also works because `ArrayList`s do not require information about the class in order to allocate memory in the same way that arrays do.
 
-18. INCOMPLETE
+18. Wildcards are a mechanism for casting a collection of one type to a collection of another. Specifically, it can be used to cast collections of one type, to a collection of subclasses/superclasses of that type. 
+
+    For example, if you had the following class hierarchy:
+    ```java
+    abstract class Animal {public abstract void eat();}
+
+    class Cat extends Animal {
+        public void eat() {System.out.println("nom nom nom");}
+    }
+
+    class Horse extends Animal {
+        public void eat() {System.out.println("om nom nom");}
+    }
+    ```
+    And we wanted a method which would feed all the animals in a list, like so:
+    ```java
+    class Farmer {
+        public void feed(List<Animal> farmyard) {
+            for (Animal animal : farmyard) {
+                animal.eat();
+            }
+        }
+    }
+    ```
+    We would not be able to pass in an object of type `List<Cat>` or `List<Horse>` as the compiler is unable to implicitly cast either of these to a `List<Animal>` object. If it did so, it could potentially create the following problem:
+    ```java
+    List<Cat> cats = new ArrayList<Cat>();
+    List<Animal> a = cats; // Compiler will throw an error here
+    a.add(new Horse());    // Because this part shouldn't be allowed
+    ```
+    As such you could use a wildcard to allow the `feed` method to accept an list of an unknown class which extends `Animal`, whether that's a `List<Animal>`, `List<Cat>`, or `List<Horse>`.
+    ```java
+    class Farmer {
+        public void feed(List<? extends Animal> farmyard) {
+            for (Animal animal : farmyard) {
+                animal.eat();
+            }
+        }
+    }
+    ```
+    Similarly, imagine a scenario in which the farmer wants to buy a new horse.
+    ```java
+    public void buyNewHorse(List<Animal> farmyard) {
+        farmyard.add(new Horse());
+    }
+    ```
+    The compiler would now throw an error if we tried to pass in a `List<Horse>` object, because it cannot implicitly cast this to a `List<Animal>` object. Instead we can use a wildcard to allow the method to accept a list of any superclass of `Horse` (including `Horse` itself).
+    ```java
+    public void buyNewHorse(List<? super Horse> farmyard) {
+        farmyard.add(new Horse());
+    }
+    ```
+    Now we can pass in either a `List<Horse>` or a `List<Animal>` object and the compiler will be able to add a `Horse` object to it safely. 
 
 19. A reference is guaranteed by the compiler to always be pointing to some data of the correct type - either an instance of the correct class, or null. Pointers on the other hand can be pointing to a random chunk of memory which, if you were to try to use as if it were of the correct type, would cause problems in your code.
 
@@ -104,4 +201,4 @@
     2. References and pointers, and how they relate to im/mutability.
     3. Unit tests
 
-22. Question 5 about how to test for TCO.
+22. Question 5 about how to test for TCO, and question 17 about type erasure.
