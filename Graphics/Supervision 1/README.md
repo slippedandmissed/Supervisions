@@ -22,8 +22,4 @@
 
 ## Longer questions
 
-1. <object data="https://github.com/slippedandmissed/Supervisions/raw/master/Graphics/Supervision%201/figures/Intersection%20with%20cylinder.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://github.com/slippedandmissed/Supervisions/raw/master/Graphics/Supervision%201/figures/Intersection%20with%20cylinder.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/slippedandmissed/Supervisions/raw/master/Graphics/Supervision%201/figures/Intersection%20with%20cylinder.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+1. <img src="https://github.com/slippedandmissed/Supervisions/raw/master/Graphics/Supervision%201/figures/cylinder.png" />
