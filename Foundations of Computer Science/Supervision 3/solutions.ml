@@ -29,14 +29,8 @@ let fltree_of_all_ints =
 (* My Code *)
 let rec fltree_flatten (FLBr(x,tf1,tf2)) =  StreamCons(x, fun () -> stream_interleave (fltree_flatten (tf1()), fltree_flatten (tf2())));; 
 
-let rec listify (FLBr(a, l, r)) = FLBr([a], (fun () -> listify (l())), (fun () -> listify (r())))
-let rec fltree_merge (FLBr(x, xl, xr)) (FLBr(y, yl, yr)) = FLBr(x@y, (fun () -> fltree_merge (xl()) (xr())), (fun () -> fltree_merge (yl()) (yr())));;
-let breadth_first (FLBr(a, left, right)) =
-    let rec aux left right =
-        match fltree_merge left right with
-        | FLBr(x, l, r) -> StreamCons(x, fun () -> aux (l()) (r()))
-    in StreamCons([a], (fun() -> aux (listify (left())) (listify (right()))));;
-
+let uncurried_append(x,y) = List.append x y;;
+let rec breadth_first (FLBr(a, left, right)) = StreamCons([a], fun() -> zip_streams uncurried_append (breadth_first (left())) (breadth_first (right())))
 
 let result = breadth_first fltree_of_all_ints;;
-stream_get (10, result);;
+stream_get (5, result);;
