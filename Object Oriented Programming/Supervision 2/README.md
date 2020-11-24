@@ -28,3 +28,15 @@
     ```
 
 25. https://github.com/slippedandmissed/Supervisions/tree/master/Object%20Oriented%20Programming/Supervision%202/code/Question25
+
+26.
+    1. <br/><img style="height: 400px" src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%202/figures/26-a.svg" />
+    2. <br/><img style="height: 400px" src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%202/figures/26-b.svg" />
+
+27.
+    |   | public | private | protected | package-protected |
+    |---|--------|---------|-----------|-------------------|
+    | a |    Y   |    N    |     Y     |         Y         |
+    | b |    Y   |    N    |     Y     |         N         |
+    | c |    Y   |    N    |     Y     |         Y         |
+    | d |    Y   |    N    |     N     |         N         |
