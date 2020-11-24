@@ -206,4 +206,49 @@
         }
     }
     ```
-37. 
+37. https://github.com/slippedandmissed/Supervisions/tree/master/Object%20Oriented%20Programming/Supervision%202/code/Question37
+
+38. The *mark-sweep* technique is the fastest of the three techniques in that it takes the least amount of time to perform. However it requires keeping a data structure full of memory locations and so it is not the most efficient space-wise. The *mark-sweep-compact* technique eliminates the need for storing a list of all of the available memory locations. Furthermore, having larger chunks of adjacent free memory means that the application can easily allocate large data structures there. However, moving surviving objects takes time. The *mark-copy* technique is very inefficient in terms of memory, because only half of the memory is ever in use by the application at a time. However it also leaves large consecutive chunks of available memory.
+
+39. If objects are mutable, then often copies of the object have to be made in order to stop the user accidentally modifying an important attribute of the original. This means that more memory is allocated and so the garbage collector takes longer to run.
+
+40. In Java, there is no guarantee that the finalizers will run. Therefore it is bad practice to do important manual garbage collection in the finalizer.
+
+41.
+    ```java
+    public interface Destructable {
+        public void onDestruction();
+    }
+    ```
+    ```java
+    public class TestClass implements Destructable {
+
+        private String[] largeResource;
+
+        public void doSomeStuff() {
+            largeResource = new String[] {
+                "All", "the", "birds", "died", "in", "1986", "due", "to", "Reagan", "killing", "them", "and", "replacing", "them", "with", "spies", "that", "are", "now", "watching", "us.", "The", "birds", "work", "for", "the", "bourgeoisie."
+            };
+
+            System.out.println(String.join(" ", largeResource));
+        }
+
+        public void onDestruction() {
+            largeResource = null;
+        }
+    }
+    ```
+    ```java
+    public class Main {
+        public static void main (String[] args) {
+            TestClass test = new TestClass();
+            try {
+                test.doSomeStuff();
+            } finally {
+                test.onDestruction();
+            }
+        }
+    }
+    ```
+
+42. The `finally` block is executed.
