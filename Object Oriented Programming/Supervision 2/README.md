@@ -29,11 +29,11 @@
 
 25. https://github.com/slippedandmissed/Supervisions/tree/master/Object%20Oriented%20Programming/Supervision%202/code/Question25
 
-26.
+26. 
     1. <br/><img style="height: 400px" src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%202/figures/26-a.svg" />
     2. <br/><img style="height: 400px" src="https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Object%20Oriented%20Programming/Supervision%202/figures/26-b.svg" />
 
-27.
+27. 
     |   | **public** | **private** | **protected** | **package-protected** |
     |---|------------|-------------|---------------|-----------------------|
     | a |      Y     |      N      |       Y       |           Y           |
@@ -79,7 +79,7 @@
     }
     ```
 
-30.
+30. 
     ```java
     public class Student {
         public int ticks;
@@ -104,7 +104,7 @@
 
     2. My new code is easier to maintain because errors are easier to spot. For example you can no longer create a piece whose name is an invalid character, and it is easier to make changes to a specific piece's icons or value. The drawback is that I need a seprarate class for each piece which makes my codebase quite a lot bigger.
 
-32.
+32. 
     ```java
     public abstract class Shape {
         public static final String type = "Shape";
@@ -132,8 +132,8 @@
 
 33. A non-abstract class has fields and methods and can be instantiated. An abstract class cannot be instantiated, but classes which inherit from it can. Abstract classes can have fields and methods, but some of those methods do not need to be implemented, but instead are required to be implemented by any non-abstract child class. An interface provides a promise of funtionality in any class which implements it. The interface itself does not contain the functionality.
 
-34.
-    1.
+34. 
+    1. 
         | Operation       | **Complexity** |
         |-----------------|----------------|
         | Append          | O(1)           |
@@ -145,20 +145,20 @@
     
     2. https://chime.cl.cam.ac.uk/page/repos/jbs52/classic_collections_lists_and_queues/code/b1aa189c4e5569e93f7878039c93e72487939ce5
 
-    3.
+    3. 
         |              | **Complexity** |
         |--------------|----------------|
         | Best case    | O(1)           |
         | Average case | O(N)           |
         | Worst case   | O(N)           |
 
-35.
-    1.
+35. 
+    1. 
         https://chime.cl.cam.ac.uk/page/repos/jbs52/classic_collections_lists_and_queues/code/f506f56acae1605edeeb42c4a050a8c7689c9f41
 
         https://chime.cl.cam.ac.uk/page/repos/jbs52/classic_collections_lists_and_queues/code/680517678dc15de394bdc8f36f400107053a03e1
 
-    2.
+    2. 
         |                   | **Complexity** |
         |-------------------|----------------|
         | Push Best case    | O(1)           |
@@ -214,7 +214,7 @@
 
 40. In Java, there is no guarantee that the finalizers will run. Therefore it is bad practice to do important manual garbage collection in the finalizer.
 
-41.
+41. 
     ```java
     public interface Destructable {
         public void onDestruction();
