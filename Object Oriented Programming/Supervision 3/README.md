@@ -296,7 +296,7 @@
 
     The final solution demonstrates the open-closed principle because if a new state was to be added, all you would have to do is create a new subclass of the `State` inferface. You would not have to modify the `State` interface itself or the code which uses an instance thereof.
 
-62. 
+62. https://chime.cl.cam.ac.uk/page/repos/jbs52/game_of_life/code
 
 63. The state pattern allows you to make changes to an object's behaviour based on a change to an internal state, whereas the strategy pattern allows you to select an algorithm to use based on any number of criteria at runtime.
 
@@ -333,4 +333,20 @@
         }
         ```
 
-    4. 
+    4. I would use the decorator pattern.
+        ```java
+        class BorderedShape extends Shape {
+
+            private Shape inner;
+
+            public BorderedShape(Shape inner) {
+                this.inner = inner;
+            }
+
+            public void draw() {
+                inner.draw();
+                drawABorderAroundIt();
+            }
+
+        }
+        ```
