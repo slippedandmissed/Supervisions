@@ -107,7 +107,7 @@
 32.
     ```java
     public abstract class Shape {
-        public static final string type = "Shape";
+        public static final String type = "Shape";
 
         abstract void draw(AsciiImage asciiImage);
     }
@@ -116,7 +116,7 @@
     public class Circle extends Shape {
 
         private final int x;
-        public static final string type = "Circle";
+        public static final String type = "Circle";
 
         public Circle(int x) {
             this.x = x;
