@@ -18,15 +18,20 @@
 
 8. Two different light spectra which appear to have the same colour.
 
-9. 
+9. Display-encoded colours are intended for efficient encoding, easier interpretation of colour, and perceptual uniformity.
 
 10. 
+    1. sRGB
 
-11. 
+    2. HSV / HLS
 
-12. 
+    3. CIE Lab / CIE Luv
 
-13. 
+11. Luma is gamma-encoded whereas luminance is linear.
+
+12. They are a compromise between clipping and contrast compression. They mimic the response of analog film.
+
+13. It is an optical illusion which tricks the brain into thinking that a percieved colour is brighter than that same colour but with no glare.
 
 ## Longer questions
 
@@ -57,10 +62,10 @@
 
 7. You could use two buffers: a front buffer which is shown on the screen, and a back buffer which is being drawn to by the GPU. When drawing is finished, swap the front and back buffers, and then start rendering the next frame. However, this creates some inefficiency during the periods of time during which the GPU has finished rendering the next frame but cannot start rendering the frame after until the buffers are swapped. A potential solution to this is to use three buffers so that in the down-time, the GPU can start rendering the next frame to the third buffer. However this requires 50% more memory.
 
-8. 
+8. When a certain colour of light enters the eye it produces responses from the L, M, and S cones. The idea behind XYZ colour matching functions is that for a given colour, the same LMS cone responses can be produced by a linear combination of three independent reference colours, and so the brain would perceive the same colour. The relationship between them is therefore that the XYZ values for a given colour should produce the same LMS cone responses as the colour itself would produce.
 
-9. 
+9. Gamma-corrected colour values are perceived to be more uniform than linear colour values. This allows colours to be stored more efficiently and to be more easily interpreted. However, while colour values can be transformed from one linear colour space to another, it is much more difficult to convert between gamma-corrected colour spaces.
 
-10. 
+10. ITU r709 is the specification for linear SDR colour space. ITU r2020 is the specification for linear HDR colour space.
 
-11. 
+11. Tone mapping is an important part of the rendering process because in a light simulation the illumination of certain pixels can span tens of orders of magnitudes, whereas the human eye can detect only around 4 orders of magnitude, and a conventional display can only emit around 3 orders of magnitude. Tone mapping is therefore important so that we can squeeze the huge range of possible simulated illuminations into the small range of displayable illuminations. Tone mapping can also perform cosmetic changes to the scene such as colour grading, the simulation of night vision, motion blur, and making the scene look more realistic. Display encoding is another important part of the render pipeline because it allows colour values to be efficiently stored in the raster buffer.
