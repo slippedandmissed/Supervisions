@@ -1,0 +1,33 @@
+Proofs - Basic
+--------------
+
+4. Even though your ideas are correct, it would be good to also learn to formalize your proofs the way the professor suggests for now, to avoid common errors. For example, having done the scrap work you have done, you could write something like: Let x, y real numbers and z=1/2(y-x). Then z is a real number and x+z=y-z. 
+
+For 5 on the contrary, you don't need to show all that work (which helped you find the counterexample. You can just say: Let x=1, y=0 and suppose there exists an integer z such that x+z=y-z. Then z=1/2, a contradiction.
+
+Advanced
+------------------
+
+1. Why? Always present a small proof
+
+2. The work is again correct, but try to write your thoughts as a small essay: 'Let k postiive, and m, n integers such that km|kn. Then....'. It is a good practice in the long run, making your work more readable.
+
+3. n=0 is a counterexample, as it is not true that 2|1. Everybody fell on that trap though.
+
+4. How do you go from n=2a=3b=5c to n = (2*3*5)k?
+
+10. Again correct ideas, but that presentation would cost you points in an exam. Esp. in (c), those statements are not equal, but you can show they are logically equivalent. We will talk about this in the supervision. Similarly, (e) should be rephrased - when you work with universal quantifiers, it is better to fix some  arbitrary value of the variable and then work without the quantifier.
+
+Optional
+---------
+1c. Why is j odd if you assume 8n+1 is a square?
+
+2. You have proven that (A implies Q) iff (B implies Q), instead of (A iff B). This is one of the examples where it is crucial to learn a way to structure your arguments. We will go through this example in the supervision.
+
+Numbers - Basic
+----------
+1. You can take as definition of (a=b mod n) that n|a-b or a-b=kn for some integer n. This way you only introduce one new variable and usually end up with shorter, nicer proofs. 
+
+3a. I don't understand what you mean by km+l=l here.
+
+4. The proof of such things is more complicated in general. We can also see that in the supervision.
