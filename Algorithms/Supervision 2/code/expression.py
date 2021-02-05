@@ -1,6 +1,7 @@
 #!/usr/bin/python3.9
 
 # This script has completely customiseable operators and order of operations
+# It supports operators with any number of operands (e.g. factorial only has one operand)
 
 import re
 

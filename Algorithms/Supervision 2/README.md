@@ -93,114 +93,21 @@ The fact that the empty list has to have a value of null means that the class ca
 
 
 ## Exercise 32
-The below code is also available at https://github.com/slippedandmissed/Supervisions/blob/master/Algorithms/Supervision%202/code/expression.py
-```python
-#!/usr/bin/python3.9
-
-# This script has completely customiseable operators and order of operations
-
-import re
-
-notOperator = "[^^\\*\\/\\+-]" # Regex matching all characters which are not operators
-
-orderOfOperations = [
-    {"regex": re.compile("(\\()([^\\(\\)]*)\\)"), "opGroup": 0},                        # Brackets
-    {"regex": re.compile(f"({notOperator}*)(\\^)({notOperator}*)"), "opGroup": 1},      # Exponentiation
-    {"regex": re.compile(f"({notOperator}*)([\\*\\/])({notOperator}*)"), "opGroup": 1}, # Multiplication and division
-    {"regex": re.compile(f"({notOperator}*)([\\+-])({notOperator}*)"), "opGroup": 1}    # Addition and subtraction
-]
-
-operatorInfo = {
-    "(": {"information": False, "template": "({})", "importance": 0, "operands": 1}, # Here "information": False means that Expression('(', inner) is essentially the same as inner.
-    "^": {"information": True, "template": "{}^{}", "importance": 1, "operands": 2}, # "importance" reflects order of operations
-    "*": {"information": True, "template": "{}*{}", "importance": 2, "operands": 2},
-    "/": {"information": True, "template": "{}/{}", "importance": 2, "operands": 2},
-    "+": {"information": True, "template": "{}+{}", "importance": 3, "operands": 2},
-    "-": {"information": True, "template": "{}-{}", "importance": 3, "operands": 2}
-}
-
-class Expression:
-    def __init__(self, operator, *operands):
-        self.operator = operator
-        self.operands = operands
-
-    def __repr__(self):
-        return self.toInfix()
-
-    # Factory method for constructing an expression from an infix string
-    def fromInfix(infix, inner=None, escape=True):
-        if inner is None:
-            inner = []
-        if escape:
-            infix = infix.replace(" ", "").replace("&", "&amp;")
-
-        foundAny = False
-        for layer in orderOfOperations:
-            match = 0
-            while match is not None:
-                match = layer["regex"].search(infix)
-                if match is not None:
-                    foundAny = True
-                    groups = match.groups()
-                    operands = []
-                    operator = groups[layer["opGroup"]]
-                    for i, g in enumerate(groups):
-                        if i != layer["opGroup"]:
-                            operands.append(Expression.fromInfix(g, inner, False))
-                    infix = infix[:match.start()] + f"&{len(inner)};" + infix[match.end():]
-                    if operatorInfo[operator]["information"]:
-                        inner.append(Expression(operator, *operands))
-                    else:
-                        inner.append(operands[0])
-
-        for i, k in enumerate(inner):
-            if infix == f"&{i};":
-                return k
-
-        return infix.replace("&amp;", "&")
-
-    # Returns an infix string from an expression
-    def toInfix(self):
-        children = []
-        for i in self.operands:
-            if type(i) == Expression:
-                # Change comparison to >= if you want to make the assumption that operators of the same importance are associative
-                tmplt = "({})" if operatorInfo[i.operator]["importance"] > operatorInfo[self.operator]["importance"] else "{}"
-                children.append(tmplt.format(i.toInfix()))
-            else:
-                children.append(str(i))
-        return operatorInfo[self.operator]["template"].format(*children)
-
-    # Factory method for constructing an expression from an RPN string
-    def fromRPN(rpn):
-        stack = []
-        tokens = [x for x in rpn.split(" ") if x != ""]
-        for token in tokens:
-            if token in operatorInfo and (info:=operatorInfo[token])["information"]:
-                expr = Expression(token, *stack[-(opCount:=info["operands"]):])
-                stack = stack[:-opCount]
-                stack.append(expr)
-            else:
-                stack.append(token)
-        return stack[0]
-
-    # Returns an RPN string from an expression
-    def toRPN(self):
-        value = ""
-        for i in self.operands:
-            if type(i) == Expression:
-                value += i.toRPN()+" "
-            else:
-                value += str(i)+" "
-        return value+self.operator
-            
-print(Expression.fromInfix("(3+12)*4-2").toRPN())
-# 3 12 + 4 * 2 -
-
-print(Expression.fromRPN("3 12 + 4 * 2 -").toInfix())
-# (3+12)*4-2
-```
+The code for converting between infix and postfix is available at https://github.com/slippedandmissed/Supervisions/blob/master/Algorithms/Supervision%202/code/expression.py
 
 It is far easier to convert from postfix to infix than from infix to postfix.
 
-## Exercise 
+## Exercise 33
+Assuming that the number of keys is far fewer than the total number of English words, I would use the natural ordering of strings such that the dictionary is a binary tree. Each node has a key-value pair and the left child is composed of a sub-tree all of whose keys are less than the current node's, and the right child composed of those greater.
+
+If the keys were likely to be very long (e.g. if they were German words) then I would use the natural ordering of the hashes of the string (e.g. MD5) to the same effect, but most English words are in fact shorter than their hashes under most hashing schemes.
+
+Either of these techniques would allow `log(n)` complexity for both `get()` and `set()`
+
+## Exercise 34
+If the list is a LinkedList, the new key-value pair should be added at the position which the natural ordering of the keys dictates. If you assume that the list was sorted by key initially (which, if this technique is always used, it would be), then the list will remain sorted after the `set()`. As such, `get()` can use a binary search to reduce its time complexity from `n` to `log(n)`.
+
+If the keys have no natural ordering, then it does not matter where the new pair is inserted.
+
+## Exercise 35
+![](https://latex.codecogs.com/gif.latex?%5Ctextrm%7BLet%26space%3B%7Dn%3D2%5Em%26space%3B%5C%5C%26space%3B%5Cbegin%7Balign*%7D%26space%3Bf(2%5Em)%26space%3B%26%3D%26space%3Bf(2%5E%7Bm-1%7D)%26space%3B%26plus%3B%26space%3Bk%26space%3B%5C%5C%26space%3B%26%3D%26space%3Bf(2%5E%7Bm-2%7D)%26space%3B%26plus%3B%26space%3B2k%26space%3B%5C%5C%26space%3B%26%26space%3B%5Cvdots%26space%3B%5C%5C%26space%3B%26%3D%26space%3Bf(2%5E%7Bm-i%7D)%26space%3B%26plus%3B%26space%3Bik%26space%3B%5C%5C%26space%3B%26%26space%3B%5Cvdots%26space%3B%5C%5C%26space%3B%26%3D%26space%3Bf(2%5E0)%26space%3B%26plus%3B%26space%3Bmk%26space%3B%5C%5C%26space%3B%5Cend%7Balign*%7D%26space%3B%5C%5C%26space%3B%5Ctherefore%26space%3Bf(n)%26space%3B%3D%26space%3Bf(1)%26space%3B%26plus%3B%26space%3Bk%5Clog_2(n))
