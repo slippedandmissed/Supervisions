@@ -65,9 +65,73 @@ Max:
 
 ![Graph](https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Algorithms/Supervision%203/imgs/41.svg)
 
-## Exercise 41 again
-
-![Graph](https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Algorithms/Supervision%203/imgs/41-2.svg)
-
 ## Exercise 42
 
+If `p` has a black child and `u` does not, then the total number of black nodes in a given path is still invariant
+
+## Exercise 44
+
+![Graph](https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Algorithms/Supervision%203/imgs/44.svg)
+
+## Exercise 45
+
+    How many times did you insert into a node that still had room?
+
+14
+
+    How many node splits did you perform?
+
+6
+
+    What is the depth of the final tree?
+
+3
+
+    What is the ratio of free space to total space?
+
+1/3
+
+![Graph](https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Algorithms/Supervision%203/imgs/45.svg)
+
+## Exercise 46
+
+If a key is not in a bottom node, it must have a subtree to its immediate right. This subtree contains its successor, and each key in this subtree is greater than it.
+
+It therefore follows that the successor is the smallest key in that subtree, and can thus be reached by following the left-most branch until a leaf is reached.
+
+Since all paths are the same length, all leaves are bottom nodes.
+
+Therefore the successor is a bottom node.
+
+## Exercise 47
+
+![Graph](https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Algorithms/Supervision%203/imgs/47.svg)
+
+## Exercise 48
+
+Each non-empty location in the table could contain a key-value pair, rather than just the value. Then, when looking up a key, you could compare the key with the key stored at the location. If they match, you have found the right value. Otherwise, perform the same procedure as insertion until the location with the matching key is found.
+
+## Exercise 49
+
+When deleting a value at a location, instead of marking the location as empty, mark it as `deleted`. Then, in insertion you can treat it as empty, but in searches you can treat it as non-empty.
+
+This solves the problem of searching for a key which has been placed after a deleted key. If deleted cells are just made empty, this result is hard to distinguish from the key simply not being in the table.
+
+## Exercise 50
+
+Bubble sort has quadratic cost when it takes up to `n` passes through the array to sort it. However, we can guarantee here that it will only take a constant number of passes through the array to sort it, and so the cost is linear.
+
+## Exercise 51
+
+Construct a heap using all of the elements from both heaps. This has complexity `n log(n)`.
+
+## Exercise 52
+
+![Graph](https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Algorithms/Supervision%203/imgs/52.svg)
+
+
+## Exercise 54
+
+Since a binomial tree of order 0 has 2^0=1 nodes and a binomial tree of order (k+1) has twice the number of nodes of a binomial tree of order k, a binomial tree of order n contains 2^n nodes.
+
+Binary positional notation tells you which powers of 2 you need to sum in order to get a particular number. As such, it tells you which degrees of binary tree to use in order to have that number of total nodes.
