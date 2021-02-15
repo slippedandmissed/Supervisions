@@ -2,7 +2,15 @@
 
 ## Exercise 36
 
-Test
+![Graph](https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Algorithms/Supervision%203/imgs/bst.svg)
 
+```
+k = 2
 
-![Graph](https://github.com)
+a = 0
+b = 5
+c = 4
+```
+
+##  Exercise 37
+
