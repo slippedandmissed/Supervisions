@@ -13,45 +13,31 @@ Tokenized using the Stanford POS tagger:
 
 
 | Token    | Sara's Label |
-|----------|--------------|
-| 's       |              |
-| .        |              |
-| 30       |              |
-| 4        |              |
-| ?        |              |
-| a        |              |
-| alarm    |              |
-| an       |              |
-| and      |              |
-| be       |              |
-| but      |              |
-| called   |              |
-| do       |              |
-| game     |              |
-| hour     |              |
-| i        |              |
-| it       |              |
-| knows    |              |
-| like     |              |
-| min      |              |
-| n't      |              |
-| nap      |              |
-| nobody   |              |
-| play     |              |
-| risky    |              |
-| roulette |              |
-| set      |              |
-| take     |              |
-| this     |              |
-| to       |              |
-| where    |              |
-| will     |              |
-
+| -------- | ------------ |
+| alarm    | negative     |
+| but      | negative     |
+| called   | positive     |
+| do       | positive     |
+| game     | positive     |
+| hour     | positive     |
+| knows    | positive     |
+| like     | positive     |
+| min      | negative     |
+| n't      | negative     |
+| nap      | positive     |
+| nobody   | negative     |
+| play     | positive     |
+| risky    | negative     |
+| roulette | negative     |
+| set      | positive     |
+| take     | negative     |
+| this     | positive     |
+| will     | positive     |
 
 |                   | Sentiment |
-|-------------------|-----------|
+| ----------------- | --------- |
 | Ground truth      | Positive  |
-| Sara's prediction |           |
+| Sara's prediction | Negative  |
 | Task 1 (simple)   | Negative  |
 | Task 1 (improved) | Positive  |
 | Task 2            | Negative  |
@@ -59,16 +45,38 @@ Tokenized using the Stanford POS tagger:
 <br />
 Sara's tokens:
 
-    []
+    [!, 'm, ,, ., 15-20, 4, 45, a, and, any, are, at, be, before, bin, chips, complete, cook, cooked, different, do, does, end, even, for, giving, i, if, in, instructions, intervene, it, least, leave, lie, manually, methods, middle, mins, money, n't, now, of, one, only, out, proper, raw, saving, say, shake, shaking, spins, still, take, takes, tefal, that, the, them, this, throwing, times, to, tried, unevenly, up, waste, we, which, will, with, without, you, your]
 
-| Token  | My Label |
-|--------|----------|
-| //TODO | //TODO   |
+
+| Token     | My Label |
+| --------- | -------- |
+| bin       | Negative |
+| complete  | Positive |
+| different | Positive |
+| giving    | Positive |
+| intervene | Negative |
+| least     | Negative |
+| leave     | Negative |
+| lie       | Negative |
+| manually  | Negative |
+| money     | Positive |
+| n't       | Negative |
+| proper    | Positive |
+| raw       | Negative |
+| saving    | Positive |
+| shaking   | Negative |
+| take      | Negative |
+| takes     | Negative |
+| throwing  | Negative |
+| tried     | Negative |
+| unevenly  | Negative |
+| waste     | Negative |
+| without   | Negative |
 
 |               | Sentiment |
-|---------------|-----------|
-| Ground truth  |           |
-| My Prediction |           |
+| ------------- | --------- |
+| Ground truth  | Negative  |
+| My Prediction | Negative  |
 
 ### 2
 don't, won't, wouldn't, barely, hardly, never, can't, doesn't, fails, shouldn't
