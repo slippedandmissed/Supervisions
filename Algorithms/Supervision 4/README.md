@@ -215,4 +215,28 @@ def check_path_correctness(g, s):
 
 ## Question 12
 
-F<sub>ij</sub>(0) = c(i &rarr; j) if i &rarr; j exists, or else &infin;
+F<sub>ij</sub>(0) = i &rarr; j if i &rarr; j exists, or else `null`
+
+F<sub>ij</sub>(k) = shortest(F<sub>ij</sub>(k-1), F<sub>ik</sub>(k-1)+F<sub>kj</sub>(k-1))
+
+## Question 13
+
+For the first graph, Djikstra's algorithm does terminate and does compute the correct minimum weights.
+
+For the second graph, Djikstra's algorithm does not terminate as there is an infinite negative weight loop.
+
+## Question 14
+
+Counterexample:
+
+
+In the below diagram suppose the edges are ordered (such that this is the order in which they are relaxed) in the following way:
+ - v &rarr; u
+ - q &rarr; u
+ - p &rarr; q
+ - s &rarr; v
+ - s &rarr; p
+
+![](https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Algorithms/Supervision%204/imgs/14.svg)
+
+After the first round of relaxing, `v.minweight` is correct. After the second round of relaxing, `u.minweight` is still incorrect, despite the fact that u &isin; neighbours(v)
