@@ -50,6 +50,22 @@ The observations are a better candidate for smoothing. This is because the likel
 
 ## Viterbi and Forward algorithm
 
+### 1
+
+&alpha;<sub>t</sub>(j) = &Sigma;<sub>i=1</sub><sup>N</sup> &alpha;<sub>t-1</sub>(i)a<sub>ij</sub>b<sub>j</sub>(o<sub>t</sub>)
+
+The forward trellis is the probability of observing a given set of observations up to time t and also the current state at time t being state j.
+
+This is equal to the probability of seeing all of the observations up to time t-1 from the previous state, times the probability of emitting the t<sup>th</sup> observation from state j, times the probability of transitioning to state j given the previous state. However, since we don't know what the previous state is, we have to iterate over all possible previous states i, and multiply each term by the probability of the previous state being i.
+
+Therefore the forward trellis at time t of state j is equal to the sum over all possible previous states i of the probability of transitioning from i to j, times the probability of emitting the t<sup>th</sup> observation from state j, times the probability of the previous state being i, times the probability of seeing all of the observations up to time t-1. The last two of these terms can be grouped into the forward trellis at time t-1 of state i.
+
+This is the same form as the recursive formula above.
+
+### 2
+
+It is not certain which state was the previous one, and so you have to do a weighted sum over all of the possibilities, weighted according to the probability of that path.
+
 ## Parts of Speech tagging with HMM
 
 ### 1
@@ -111,4 +127,32 @@ Here &delta;<sub>i</sub>(t) is the probability of the most likely path from 0 &l
 
 These are the same definitions as in the lecture.
 
-![]()
+![](https://raw.githubusercontent.com/slippedandmissed/Supervisions/master/Machine%20Learning/Supervision%203/imgs/viterbi.svg)
+
+For every possible second state, it is most likely that the first observation (we) was a personal pronoun.
+
+However, if the last observation (fish) was a verb, it is most likely that the previous observation (can) is a verb. Whereas if "fish" was a noun, it is most likely that "can" is an auxiliary verb. These are the only two possible states for "fish". 
+
+### 4
+
+The estimated sequence is s<sub>0</sub>,s<sub>3</sub>,s<sub>4</sub>,s<sub>1</sub>,s<sub>f</sub> (i.e. we are able to fish) which I would say is the correct interpretation.
+
+### 5
+
+b<sub>i</sub>(z) = proportion of the data labelled with state s<sub>i</sub> which is also labelled with observation z.
+
+### 6
+
+Some states overlap when it comes to words. For example any word which is a verb is also an auxiliary verb. Likewise any proper noun is also a noun.
+
+The problem could be fixed by making sure that the states are mutually exclusive (e.g. verb &rarr; non-auxiliary verb, noun &rarr;non-proper noun in the cases above)
+
+## Viterbi with higher order HMMs
+
+### 1
+
+N<sup>2</sup>
+
+### 2
+
+For a k-order HMM, the time complexity is O(kT). This is linear in the case of constant k but if k=N then the time complexity is O(NT).
